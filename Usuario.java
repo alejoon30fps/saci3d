@@ -1,4 +1,5 @@
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ public class Usuario implements interfazGetId {
     private String contraseña;
     protected static int tope=1;
     protected static int topeDiario = 60;
+    private LocalDateTime ultimaFechaDiaria = LocalDateTime.now(); // variable util para reiniciar
+    private LocalDate ultimaFechaSemanal = LocalDate.now(); // esta para lo mismo pero semanal
     
     public int topeDiarioUsuario = 0;
     // Constructor
@@ -72,6 +75,9 @@ public class Usuario implements interfazGetId {
     }
 
     public void agendar(Scanner sc, ArrayList<Cita> citas,  ArrayList<Impresora> impresoras) {
+        // Se reinicia solo si es necesario
+        reiniciarContadores();
+
         if(idCitasAgendadas.size()<Usuario.tope && topeDiarioUsuario < topeDiario){ // verifica el limite semanal y diario 
             try {
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -195,6 +201,24 @@ public class Usuario implements interfazGetId {
         else{
             System.out.println("No tienes agendada esta cita");
         }
+    }
+
+    // funcion que reinicia el topde diario usuraio usando local data para no comparar horas sino dias
+    public void reiniciarContadores() {
+    LocalDateTime horaActual = LocalDateTime.now();
+    
+    // Reinicio diario
+    if (!ultimaFechaDiaria.toLocalDate().isEqual(horaActual.toLocalDate())) {
+        topeDiarioUsuario = 0;
+        ultimaFechaDiaria = horaActual;
+    }
+    
+    // semanal
+    if (horaActual.getDayOfWeek() == java.time.DayOfWeek.MONDAY &&
+        !ultimaFechaSemanal.isEqual(horaActual.toLocalDate())) {
+        idCitasAgendadas.clear();  //  borra todas las citas semanales
+        ultimaFechaSemanal = horaActual.toLocalDate();
+    }
     }
 }
 
