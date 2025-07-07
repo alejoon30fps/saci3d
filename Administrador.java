@@ -59,9 +59,8 @@ public class Administrador extends Usuario  {
         System.out.println("Se ha cambiado el tope diario a "+ actualizarTope);
     }
 
-    public void agregarImpresora(Scanner sc,  List<Impresora> impresoras){
-        System.out.println(impresoras);
-        
+    public void agregarImpresora(Scanner sc,  List<Impresora> impresoras,double filamento){
+    
         System.out.println("Ingrese el Id de la nueva impresora:");
         String id = sc.nextLine();
                 
@@ -69,11 +68,20 @@ public class Administrador extends Usuario  {
         int cantidad = sc.nextInt();
         sc.nextLine(); // limpiar salto
 
-        Impresora nuevaImpresora = new Impresora(id, cantidad);
+        Impresora nuevaImpresora = new Impresora(id, cantidad,filamento);
 
         impresoras.add(nuevaImpresora);
 
 
+    }
+
+    public void futuroConsumoImp(){
+        System.out.println("el futuro consumo es "+Impresora.consumo);
+    }
+    public void mostrarImpresoras(List<Impresora> impresoras){
+        for (int i = 0; i < impresoras.size(); i++) {
+            System.out.println(impresoras.get(i));
+        }
     }
 
     public void anunciar(String mensaje, ArrayList<Anuncio> listaAnuncios,LocalDateTime fechaInicio, int duracion,Usuario destinatario) {

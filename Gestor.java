@@ -43,9 +43,9 @@ public class Gestor {
     private ArrayList<Impresora> getImpresora(){
         ArrayList<Impresora> impresoras = new ArrayList<>();
         
-            impresoras.add(new Impresora("A", 5));
-            impresoras.add(new Impresora("B", 3));
-            impresoras.add(new Impresora("C", 4));
+            impresoras.add(new Impresora("A", 5,20.0));
+            impresoras.add(new Impresora("B", 3,40.0));
+            impresoras.add(new Impresora("C", 4,60.0));
         
         return impresoras;
         
@@ -289,7 +289,7 @@ public class Gestor {
         boolean menu= true;
         while(menu){
             System.out.println("Hola profesor "+administrador.getNombre()+" ¿que deseas hacer el dia de hoy?");
-            System.out.println("1) consultar\n2) agendar\n3) cancelar mi cita\n4) anunciar\n5)cancelar citas\n6)cambiar disponibilidad impresora\n7)cambiar tope de impresion \n8)agregar impresora\n9)ver mis citas\n10)salir");
+            System.out.println("1) consultar\n2) agendar\n3) cancelar mi cita\n4) anunciar\n5)cancelar citas\n6)cambiar disponibilidad impresora\n7)cambiar tope de impresion \n8)agregar impresora\n9)ver mis citas\n10)ver futuro consumo\n11)ver impresoras\n12)salir");
             String opt=sc.nextLine();
             boolean rep=true;
             while(rep){
@@ -370,7 +370,9 @@ public class Gestor {
                         break;
 
                     case "8":
-                        administrador.agregarImpresora(sc, listaImpresoras);
+                        System.out.println("Cuanto filamento tiene la impresora?");
+                        double filamento=Double.parseDouble(sc.nextLine()) ;
+                        administrador.agregarImpresora(sc, listaImpresoras,filamento);
                         rep=false;
                         break;
                     case "9":
@@ -378,6 +380,14 @@ public class Gestor {
                         rep=false;
                         break;
                     case "10":
+                        administrador.futuroConsumoImp();
+                        rep=false;
+                        break;
+                     case "11":
+                        administrador.mostrarImpresoras(listaImpresoras);
+                        rep=false;
+                        break;
+                    case "12":
                         return;
                     default:
                         System.out.println("Opción no válida.");

@@ -2,5 +2,10 @@
 
 ## Integrantes
 - Diego David Goyeneche Colmenares
+<<<<<<< HEAD
+=======
+- Andres Camilo Espitia Calderon
+- Sergio Andres Valencia Angulo
+>>>>>>> d9d2a41 (Yohan)
 - Yohan Steven Jimenez Hilarion
 - Alejandro Muñoz Avila

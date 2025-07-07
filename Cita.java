@@ -11,7 +11,7 @@ public class Cita extends Evento  {
         super(fechaInicio,destinatario,duracion);
         this.numImpresora = numImpresora;
         this.pesoFilamento = pesoFilamento;
-        
+        Impresora.consumo+=pesoFilamento;
         Impresora.minusFila(pesoFilamento);
 
     }
