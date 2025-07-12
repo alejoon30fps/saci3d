@@ -2,7 +2,6 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Usuario implements interfazGetId {
@@ -15,6 +14,8 @@ public class Usuario implements interfazGetId {
     protected static int topeDiario = 60;
     
     public int topeDiarioUsuario = 0;
+    public int topeSemanalUsuario = 0;
+
     // Constructor
     public Usuario(String id, String nombre, String usuario, String contraseña) {
 
@@ -72,7 +73,7 @@ public class Usuario implements interfazGetId {
     }
 
     public void agendar(Scanner sc, ArrayList<Cita> citas,  ArrayList<Impresora> impresoras) {
-        if(idCitasAgendadas.size()<Usuario.tope && topeDiarioUsuario < topeDiario){ // verifica el limite semanal y diario 
+        if(topeSemanalUsuario<tope && topeDiarioUsuario < topeDiario){ // verifica el limite semanal y diario 
             try {
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                 LocalDateTime fechaInicio = null;
@@ -159,6 +160,8 @@ public class Usuario implements interfazGetId {
                 citas.add(nuevaCita);
 
                 impresoraAsignada.agendarCita(nuevaCita);
+
+                topeSemanalUsuario+=1;
 
                 System.out.println("Cita agendada exitosamente en la impresora " + impresoraAsignada.getId());
 

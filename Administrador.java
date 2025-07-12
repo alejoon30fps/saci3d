@@ -78,6 +78,7 @@ public class Administrador extends Usuario  {
     public void futuroConsumoImp(){
         System.out.println("el futuro consumo es "+Impresora.consumo);
     }
+    
     public void mostrarImpresoras(List<Impresora> impresoras){
         for (int i = 0; i < impresoras.size(); i++) {
             System.out.println(impresoras.get(i));

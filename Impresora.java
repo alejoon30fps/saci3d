@@ -4,6 +4,8 @@ public class Impresora implements interfazGetId{
     private Cita[] proximasCitas;
     private int capacidadMax;
     private double filamento;
+    private String estado;
+
     public static double filamentoTotal=0;
     public static double consumo=0;
 
@@ -15,6 +17,7 @@ public class Impresora implements interfazGetId{
         capacidadMax = capacidadMaxCitas;
         this.filamento=filamento;
         filamentoTotal+=filamento;
+        this.estado= "Estado: Disponible";
     }
     
     // getters
@@ -62,6 +65,19 @@ public class Impresora implements interfazGetId{
         return false; 
     }
 
+    public void cambiarEstado(String opcion){
+        switch (opcion) {
+
+            case "agendado":
+                this.estado="Estado: No disponible\n Motivo: Ocupado en una cita ";
+                break;
+            case "descompuesto":
+                this.estado="Estado: No disponible\n Motivo: Descompuesto o en mantenimiento ";
+            case "WOTmaterial":
+                this.estado="Estado: No disponible\n Motivo: No hay suficiente Material";
+                
+        }
+    }
     // to string 
     
     public String toString() {

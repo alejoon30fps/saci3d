@@ -15,7 +15,6 @@ public class Cita extends Evento  {
         Impresora.minusFila(pesoFilamento);
 
     }
-    
     // getters
 
     public Impresora getNumImpresora() {
