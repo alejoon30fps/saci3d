@@ -207,18 +207,18 @@ public class Usuario implements interfazGetId {
     public void reiniciarContadores() {
     LocalDateTime horaActual = LocalDateTime.now();
     
-    // Reinicio diario
-    if (!ultimaFechaDiaria.toLocalDate().isEqual(horaActual.toLocalDate())) {
-        topeDiarioUsuario = 0;
-        ultimaFechaDiaria = horaActual;
-    }
-    
-    // semanal
-    if (horaActual.getDayOfWeek() == java.time.DayOfWeek.MONDAY &&
-        !ultimaFechaSemanal.isEqual(horaActual.toLocalDate())) {
-        idCitasAgendadas.clear();  //  borra todas las citas semanales
-        ultimaFechaSemanal = horaActual.toLocalDate();
-    }
+        // Reinicio diario
+        if (!ultimaFechaDiaria.toLocalDate().isEqual(horaActual.toLocalDate())) {
+            topeDiarioUsuario = 0;
+            ultimaFechaDiaria = horaActual;
+        }
+        
+        // semanal
+        if (horaActual.getDayOfWeek() == java.time.DayOfWeek.MONDAY &&
+            !ultimaFechaSemanal.isEqual(horaActual.toLocalDate())) {
+            idCitasAgendadas.clear();  //  borra todas las citas semanales
+            ultimaFechaSemanal = horaActual.toLocalDate();
+        }
     }
 }
 
